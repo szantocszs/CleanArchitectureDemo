@@ -12,6 +12,7 @@ using CleanArch.Mvc.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using CleanArch.Infra.Data.Context;
 
 namespace CleanArch.Mvc
 {
@@ -28,10 +29,16 @@ namespace CleanArch.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("UniversitiyIdentityDbConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("UniversitiyIdentityDbConnection")));
+            
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddDbContext<UniversitiyDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("UniversitiyDbConnection"));
+            });
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
