@@ -9,11 +9,17 @@ namespace CleanArch.Infra.Data.Repository
 {
     public class CourseRepository : ICourseRespository
     {
-        private UniversitiyDbContext _ctx;
+        private UniversityDbContext _ctx;
 
-        public CourseRepository(UniversitiyDbContext ctx)
+        public CourseRepository(UniversityDbContext ctx)
         {
             _ctx = ctx ?? throw new ArgumentNullException(nameof(ctx));
+        }
+
+        public void Add(Course course)
+        {
+            _ctx.Add(course);
+            _ctx.SaveChanges();
         }
 
         public IEnumerable<Course> GetCourses()

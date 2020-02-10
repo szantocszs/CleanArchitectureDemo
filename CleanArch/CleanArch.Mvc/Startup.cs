@@ -30,14 +30,14 @@ namespace CleanArch.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("UniversitiyIdentityDbConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("UniversityIdentityDbConnection")));
             
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddDbContext<UniversitiyDbContext>(options =>
+            services.AddDbContext<UniversityDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("UniversitiyDbConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("UniversityDbConnection"));
             });
 
             services.AddControllersWithViews();

@@ -6,9 +6,9 @@ using System.Text;
 
 namespace CleanArch.Infra.Data.Context
 {
-    public class UniversitiyDbContext : DbContext
+    public class UniversityDbContext : DbContext
     {
-        public UniversitiyDbContext(DbContextOptions options) : base(options)
+        public UniversityDbContext(DbContextOptions options) : base(options)
         {
         }
 
